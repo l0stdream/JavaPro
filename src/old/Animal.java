@@ -1,3 +1,5 @@
+package old;
+
 public class Animal {
 
     public void run(String name, int meters) {

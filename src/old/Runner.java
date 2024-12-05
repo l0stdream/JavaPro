@@ -1,3 +1,5 @@
+package old;
+
 public class Runner {
     public static void main(String[] args) {
         Dog bobik = new Dog("bobik");

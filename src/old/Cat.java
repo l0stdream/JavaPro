@@ -1,3 +1,5 @@
+package old;
+
 public class Cat extends Animal {
     private static int counter;
     private final String name;
