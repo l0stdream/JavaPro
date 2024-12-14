@@ -1,10 +1,12 @@
 package homework5.phonebook;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Phonebook {
     private List<Record> phoneRecords;
+
 
     public Phonebook(List<Record> phoneRecords) {
         this.phoneRecords = phoneRecords;
@@ -14,22 +16,25 @@ public class Phonebook {
         phoneRecords.add(record);
     }
 
-    public Record find(String name) {
+    public List<Record> find(String name) {
+        LinkedList<Record> resultRecord = new LinkedList<>();
         for (Record currentRecord : this.phoneRecords) {
-            if (currentRecord.getName().equals(name))
-                return currentRecord;
+            if (currentRecord.getName().equals(name)) {
+                add(currentRecord);
+                break;
+            }
         }
-        return null;
+        return resultRecord;
     }
 
-    public LinkedList<Record> findAll(String name) {
+    public List<Record> findAll(String name) {
         LinkedList<Record> matches = new LinkedList<>();
         for (Record currentRecord : phoneRecords) {
             if (currentRecord.getName().equals(name)) {
                 matches.add(currentRecord);
             }
         }
-        return matches.isEmpty() ? null : matches;
+        return matches.isEmpty() ? new LinkedList<>() : matches;
     }
 
     @Override
