@@ -1,13 +1,12 @@
 package coffee.order;
 
 public class Order {
-    private static int counter;
-    private int orderNumber;
-    private String customerName;
+    private final int orderNumber;
+    private final String customerName;
 
-    public Order(String name) {
+    public Order(String name, Integer orderNumber) {
         this.customerName = name;
-        orderNumber = ++counter;
+        this.orderNumber = orderNumber;
     }
 
     public int getOrderNumber() {

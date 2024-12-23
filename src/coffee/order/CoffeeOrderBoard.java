@@ -1,33 +1,34 @@
 package coffee.order;
 
-import java.util.TreeMap;
+import java.util.*;
 
 
 public class CoffeeOrderBoard {
 
-    private TreeMap<Integer, String> orders;
+    private int orderNumber = 1;
+    List<Order> orders = new LinkedList<>();
 
-    public CoffeeOrderBoard() {
-        this.orders = new TreeMap<>();
+
+    public void add(String name) {
+        orders.add(new Order(name, orderNumber++));
     }
 
-    public static void add(Order order, CoffeeOrderBoard ordersBoard) {
-        ordersBoard.orders.put(order.getOrderNumber(), order.getCustomerName());
-
+    public void deliver() {
+        orders.removeFirst();
     }
 
-    public static void deliver(CoffeeOrderBoard ordersBoard) {
-        ordersBoard.orders.remove(ordersBoard.orders.lastKey());
+    public void deliver(Integer orderNumber) {
+        for (int i = 0; i < orders.size(); i++) {
+            if (orders.get(i).getOrderNumber() == orderNumber) {
+                orders.remove(i);
+            }
+        }
     }
 
-    public static void deliver(CoffeeOrderBoard ordersBoard, Integer orderNumber) {
-        ordersBoard.orders.remove(orderNumber);
-    }
-
-    public static void draw(CoffeeOrderBoard ordersBoard) {
+    public void draw() {
         System.out.println("Num | Name");
-        for (Integer orderNumber : ordersBoard.orders.keySet()) {
-            System.out.println(orderNumber + " | " + ordersBoard.orders.get(orderNumber));
+        for (Order currentOrder : orders) {
+            System.out.println(currentOrder.getOrderNumber() + " | " + currentOrder.getCustomerName());
         }
     }
 
